@@ -2,5 +2,19 @@
     <string name="app_name">Smart Notes</string>
     <string name="create_note">Create a Note</string>
     <string name="settings">Settings</string>
-    <string name="title_activity_list_notes">ListNotesActivity</string>
+    <string name="note_title">Note Title</string>
+    <string name="note_text">Note Text</string>
+    <string name="note_importance">Note Importance</string>
+    <string name="importance_high">High Importance</string>
+    <string name="importance_average">Average Importance</string>
+    <string name="importance_low">Low Importance</string>
+    <string name="importance_undefined">Undefined Importance</string>
+    <string-array name="importanceItems">
+        <item>Undefined Importance</item>
+        <item>High Importance</item>
+        <item>Average Importance</item>
+        <item>Low Importance</item>
+    </string-array>
+    <string name="add_coordinates">Add a Location</string>
+    <string name="add_image">Add an Image</string>
 </resources>

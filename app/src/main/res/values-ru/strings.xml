@@ -3,4 +3,19 @@
     <string name="app_name">Умные заметки</string>
     <string name="create_note">Создать заметку</string>
     <string name="settings">Настройки</string>
+    <string name="note_title">Заголовок заметки</string>
+    <string name="note_text">Текст заметки</string>
+    <string name="importance_average">Средняя важность</string>
+    <string name="importance_high">Высокая важность</string>
+    <string name="importance_low">Низкая важность</string>
+    <string name="importance_undefined">Неопределённая важность</string>
+    <string name="note_importance">Важность заметки</string>
+    <string-array name="importanceItems">
+        <item>Неопределённая важность</item>
+        <item>Высокая важность</item>
+        <item>Средняя важность</item>
+        <item>Низкая важность</item>
+    </string-array>
+    <string name="add_coordinates">Добавить координаты</string>
+    <string name="add_image">Добавить изображение</string>
 </resources>
