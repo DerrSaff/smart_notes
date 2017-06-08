@@ -18,4 +18,5 @@
     </string-array>
     <string name="add_coordinates">Добавить координаты</string>
     <string name="add_image">Добавить изображение</string>
+    <string name="save">Сохранить</string>
 </resources>

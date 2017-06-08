@@ -17,4 +17,5 @@
     </string-array>
     <string name="add_coordinates">Add a Location</string>
     <string name="add_image">Add an Image</string>
+    <string name="save">Save</string>
 </resources>
