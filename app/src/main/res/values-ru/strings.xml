@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Умные заметки</string>
+    <string name="create_note">Создать заметку</string>
+    <string name="settings">Настройки</string>
+</resources>
