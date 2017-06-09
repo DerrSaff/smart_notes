@@ -6,7 +6,7 @@ package com.test.smartnotes.database;
 
 public class NotesDbSchema {
     public static final class NotesTable {
-        public static final String DATABASE_NAME = "NOTES";
+        public static final String NAME = "NOTES";
 
         public static final class Cols {
             public static final String ID ="_id";
