@@ -194,4 +194,20 @@ public class DBAdapter {
         return notesList;
     }
 
+    /** Update a Note **/
+    public static int updateNoteData(NoteData data) {
+        final SQLiteDatabase db = open();
+
+        ContentValues noteValues = new ContentValues();
+        noteValues.put(NotesTable.Cols.NOTE_TITLE, data.getNoteTitle());
+        noteValues.put(NotesTable.Cols.NOTE_TEXT, data.getNoteText());
+        noteValues.put(NotesTable.Cols.IMPORTANCE, data.getImportance());
+        noteValues.put(NotesTable.Cols.IMAGE_PATH, data.getImagePath());
+        noteValues.put(NotesTable.Cols.LATITUDE, data.getLatitude());
+        noteValues.put(NotesTable.Cols.LONGITUDE, data.getLongitude());
+
+        return db.update(NotesTable.NAME, noteValues, NotesTable.Cols.ID + " = ?",
+                new String[] { String.valueOf(data.getID()) });
+    }
+
 }
