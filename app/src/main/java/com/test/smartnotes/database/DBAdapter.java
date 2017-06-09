@@ -131,6 +131,33 @@ public class DBAdapter {
         db.close();
     }
 
+    public static NoteData getNoteData(int id) {
+        final SQLiteDatabase db = open();
 
+        Cursor cursor =
+            db.query(NotesTable.NAME,
+                new String[] {
+                    NotesTable.Cols.ID, NotesTable.Cols.NOTE_TITLE, NotesTable.Cols.NOTE_TEXT,
+                    NotesTable.Cols.IMPORTANCE, NotesTable.Cols.IMAGE_PATH, NotesTable.Cols.LATITUDE,
+                    NotesTable.Cols.LONGITUDE
+                },
+                NotesTable.Cols.ID + "=?",
+                new String[] { String.valueOf(id) }, null, null, null, null);
+
+        if (cursor != null) {
+            cursor.moveToFirst();
+        }
+
+        return new NoteData(
+                Integer.parseInt(cursor.getString(0)),
+                cursor.getString(1),
+                cursor.getString(2),
+                Integer.parseInt(cursor.getString(3)),
+                cursor.getString(4),
+                Double.parseDouble(cursor.getString(5)),
+                Double.parseDouble(cursor.getString(6))
+        );
+
+    }
 
 }
