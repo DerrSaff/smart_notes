@@ -15,6 +15,9 @@ import android.util.Log;
 
 import com.test.smartnotes.database.NotesDbSchema.NotesTable;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class DBAdapter {
 
     /** if debug is set true then it will show all Logcat message **/
@@ -131,6 +134,7 @@ public class DBAdapter {
         db.close();
     }
 
+    /** Get a Note **/
     public static NoteData getNoteData(int id) {
         final SQLiteDatabase db = open();
 
@@ -158,6 +162,36 @@ public class DBAdapter {
                 Double.parseDouble(cursor.getString(6))
         );
 
+    }
+
+    /** Get All Notes **/
+    public static List<NoteData> getAllUserData() {
+        List<NoteData> notesList = new ArrayList<NoteData>();
+
+        String selectQuery = "SELECT  * FROM " + NotesTable.NAME;
+
+        final SQLiteDatabase db = open();
+        Cursor cursor = db.rawQuery(selectQuery, null);
+
+        // looping through all rows and adding to list
+        if (cursor.moveToFirst()) {
+            do {
+                NoteData data = new NoteData();
+                data.setID(Integer.parseInt(cursor.getString(0)));
+                data.setNoteTitle(cursor.getString(1));
+                data.setNoteText(cursor.getString(2));
+                data.setImportance(Integer.parseInt(cursor.getString(3)));
+                data.setImagePath(cursor.getString(4));
+                data.setLatitude(Double.parseDouble(cursor.getString(5)));
+                data.setLongitude(Double.parseDouble(cursor.getString(6)));
+
+                notesList.add(data);
+            } while (cursor.moveToNext());
+        }
+
+        cursor.close();
+
+        return notesList;
     }
 
 }
