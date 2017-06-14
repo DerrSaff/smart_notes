@@ -6,16 +6,16 @@ package com.test.smartnotes.database;
 
 public class NotesDbSchema {
     public static final class NotesTable {
-        public static final String NAME = "NOTES";
+        public static final String NAME = "notes";
 
         public static final class Cols {
             public static final String ID ="_id";
-            public static final String NOTE_TITLE ="NOTE_TITLE";
-            public static final String NOTE_TEXT ="NOTE_TEXT";
-            public static final String IMPORTANCE ="IMPORTANCE";
-            public static final String IMAGE_PATH ="IMAGE_PATH";
-            public static final String LONGITUDE ="LONGITUDE";
-            public static final String LATITUDE ="LATITUDE";
+            public static final String NOTE_TITLE ="note_title";
+            public static final String NOTE_TEXT ="note_text";
+            public static final String IMPORTANCE ="importance";
+            public static final String IMAGE_PATH ="image_path";
+            public static final String LONGITUDE ="longitude";
+            public static final String LATITUDE ="latitude";
         }
     }
 }

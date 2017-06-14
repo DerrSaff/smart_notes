@@ -38,14 +38,14 @@ public class DBAdapter {
     public static void init(Context context) {
         if (DBHelper == null) {
             if (DEBUG)
-                Log.i("DBAdapter", context.toString());
+                Log.i(LOG_TAG, context.toString());
             DBHelper = new DataBaseHelper(context);
         }
     }
 
     /** Create notes table **/
-    private static final String NOTES_CREATE = "CREATE TABLE" + NotesTable.NAME + "(" +
-            "(_id INTEGER PRIMARY KEY AUTOINCREMENT, " +
+    private static final String NOTES_CREATE = "CREATE TABLE " + NotesTable.NAME +
+            " (_id INTEGER PRIMARY KEY AUTOINCREMENT, " +
             NotesTable.Cols.NOTE_TITLE + " TEXT, " +
             NotesTable.Cols.NOTE_TEXT + " TEXT, " +
             NotesTable.Cols.IMPORTANCE + " INTEGER, " +
@@ -97,6 +97,7 @@ public class DBAdapter {
 
         return aReturn;
     }
+
     /** UnEscape string for single quotes (show data) **/
     private static String sqlUnEscapeString(String aString) {
 
@@ -166,12 +167,11 @@ public class DBAdapter {
 
     /** Get All Notes **/
     public static List<NoteData> getAllUserData() {
-        List<NoteData> notesList = new ArrayList<>();
-
-        String selectQuery = "SELECT  * FROM " + NotesTable.NAME;
-
         final SQLiteDatabase db = open();
+        String selectQuery = "SELECT * FROM " + NotesTable.NAME + ";";
         Cursor cursor = db.rawQuery(selectQuery, null);
+
+        List<NoteData> notesList = new ArrayList<>();
 
         // looping through all rows and adding to list
         if (cursor.moveToFirst()) {
