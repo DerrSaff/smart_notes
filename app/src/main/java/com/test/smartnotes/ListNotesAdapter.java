@@ -27,17 +27,24 @@ public class ListNotesAdapter extends CursorAdapter {
 
     @Override
     public void bindView(View view, Context context, Cursor cursor) {
-
-        LinearLayout noteBackground = (LinearLayout) view.findViewById(R.id.noteBackground);
         ImageView noteImage = (ImageView) view.findViewById(R.id.noteImage);
-        TextView noteTitle = (TextView) view.findViewById(R.id.noteTitle);
         ImageButton editNoteButton = (ImageButton) view.findViewById(R.id.editNote);
         ImageButton removeNoteButton = (ImageButton) view.findViewById(R.id.removeNote);
 
-        String note_title = cursor.getString(cursor.getColumnIndexOrThrow("note_title"));
-        int priority = cursor.getInt(cursor.getColumnIndexOrThrow("importance"));
+        LinearLayout noteBackground = (LinearLayout) view.findViewById(R.id.noteBackground);
+        int importance = cursor.getInt(cursor.getColumnIndexOrThrow("importance"));
+        if (importance == 1) {
+            noteBackground.setBackgroundColor(0xffff0000);
+        }
+        else if (importance == 2) {
+            noteBackground.setBackgroundColor(0xffffff00);
+        }
+        else if (importance == 3) {
+            noteBackground.setBackgroundColor(0xff00ff00);
+        }
 
+        TextView noteTitle = (TextView) view.findViewById(R.id.noteTitle);
+        String note_title = cursor.getString(cursor.getColumnIndexOrThrow("note_title"));
         noteTitle.setText(note_title);
-//        tvPriority.setText(String.valueOf(priority));
     }
 }
