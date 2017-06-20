@@ -31,8 +31,12 @@ public class ListNotesAdapter extends CursorAdapter {
     public void bindView(View view, Context context, Cursor cursor) {
 
         ImageView noteImage = (ImageView) view.findViewById(R.id.noteImage);
+
+        int id = cursor.getInt(cursor.getColumnIndexOrThrow("_id"));
         ImageButton editNoteButton = (ImageButton) view.findViewById(R.id.editNote);
+        editNoteButton.setTag(id);
         ImageButton removeNoteButton = (ImageButton) view.findViewById(R.id.removeNote);
+        removeNoteButton.setTag(id);
 
         LinearLayout noteBackground = (LinearLayout) view.findViewById(R.id.noteBackground);
         int importance = cursor.getInt(cursor.getColumnIndexOrThrow("importance"));

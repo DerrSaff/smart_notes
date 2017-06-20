@@ -211,10 +211,10 @@ public class DBAdapter {
     }
 
     /** Delete a Note **/
-    public static void deleteNoteData(NoteData data) {
+    public static void deleteNoteData(String id) {
         final SQLiteDatabase db = open();
         db.delete(NotesTable.NAME, NotesTable.Cols.ID + " = ?",
-                new String[] { String.valueOf(data.getID()) });
+                new String[] { id });
         db.close();
     }
 }
