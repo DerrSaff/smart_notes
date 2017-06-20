@@ -3,4 +3,7 @@
     <color name="colorPrimary">#3F51B5</color>
     <color name="colorPrimaryDark">#303F9F</color>
     <color name="colorAccent">#FF4081</color>
+    <color name="importanceHigh">#c8f44336</color>
+    <color name="importanceAverage">#c8eeff41</color>
+    <color name="importanceLow">#c864dd17</color>
 </resources>
