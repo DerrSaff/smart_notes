@@ -166,7 +166,7 @@ public class DBAdapter {
     }
 
     /** Get All Notes **/
-    public static Cursor getAllUserData() {
+    public static Cursor getAllNoteData() {
         final SQLiteDatabase db = open();
         String selectQuery = "SELECT * FROM " + NotesTable.NAME + ";";
 //        Cursor cursor = ;
@@ -211,7 +211,7 @@ public class DBAdapter {
     }
 
     /** Delete a Note **/
-    public static void deleteUserData(NoteData data) {
+    public static void deleteNoteData(NoteData data) {
         final SQLiteDatabase db = open();
         db.delete(NotesTable.NAME, NotesTable.Cols.ID + " = ?",
                 new String[] { String.valueOf(data.getID()) });
