@@ -19,4 +19,7 @@
     <string name="add_image">Add an Image</string>
     <string name="save">Save</string>
     <string name="no_title">No Title</string>
+    <string name="image_preview">Image preview</string>
+    <string name="edit_note">Edit the Note</string>
+    <string name="remove_note">Remove the Note</string>
 </resources>

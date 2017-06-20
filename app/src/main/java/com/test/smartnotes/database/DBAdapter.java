@@ -166,32 +166,32 @@ public class DBAdapter {
     }
 
     /** Get All Notes **/
-    public static List<NoteData> getAllUserData() {
+    public static Cursor getAllUserData() {
         final SQLiteDatabase db = open();
         String selectQuery = "SELECT * FROM " + NotesTable.NAME + ";";
-        Cursor cursor = db.rawQuery(selectQuery, null);
+//        Cursor cursor = ;
 
-        List<NoteData> notesList = new ArrayList<>();
+//        List<NoteData> notesList = new ArrayList<>();
+//
+//        // looping through all rows and adding to list
+//        if (cursor.moveToFirst()) {
+//            do {
+//                NoteData data = new NoteData();
+//                data.setID(Integer.parseInt(cursor.getString(0)));
+//                data.setNoteTitle(cursor.getString(1));
+//                data.setNoteText(cursor.getString(2));
+//                data.setImportance(Integer.parseInt(cursor.getString(3)));
+//                data.setImagePath(cursor.getString(4));
+//                data.setLatitude(Double.parseDouble(cursor.getString(5)));
+//                data.setLongitude(Double.parseDouble(cursor.getString(6)));
+//
+//                notesList.add(data);
+//            } while (cursor.moveToNext());
+//        }
+//
+//        cursor.close();
 
-        // looping through all rows and adding to list
-        if (cursor.moveToFirst()) {
-            do {
-                NoteData data = new NoteData();
-                data.setID(Integer.parseInt(cursor.getString(0)));
-                data.setNoteTitle(cursor.getString(1));
-                data.setNoteText(cursor.getString(2));
-                data.setImportance(Integer.parseInt(cursor.getString(3)));
-                data.setImagePath(cursor.getString(4));
-                data.setLatitude(Double.parseDouble(cursor.getString(5)));
-                data.setLongitude(Double.parseDouble(cursor.getString(6)));
-
-                notesList.add(data);
-            } while (cursor.moveToNext());
-        }
-
-        cursor.close();
-
-        return notesList;
+        return db.rawQuery(selectQuery, null);
     }
 
     /** Update a Note **/

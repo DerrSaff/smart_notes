@@ -7,11 +7,15 @@ import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
+import android.widget.ListView;
+
+import com.test.smartnotes.database.DBAdapter;
 
 public class ListNotesActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        DBAdapter.init(this);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_list_notes);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
@@ -26,10 +30,10 @@ public class ListNotesActivity extends AppCompatActivity {
                 startActivity(new Intent(ListNotesActivity.this, CreateNoteActivity.class));
             }
         });
-    }
 
-    public void onCreateNote(View view) {
-
+        ListView listView = (ListView)findViewById(R.id.notes_listView);
+        ListNotesAdapter listNotesAdapter = new ListNotesAdapter(this, DBAdapter.getAllUserData());
+        listView.setAdapter(listNotesAdapter);
     }
 
 }

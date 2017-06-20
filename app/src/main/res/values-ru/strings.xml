@@ -20,4 +20,7 @@
     <string name="add_image">Добавить изображение</string>
     <string name="save">Сохранить</string>
     <string name="no_title">Без заголовка</string>
+    <string name="image_preview">Превью изображения</string>
+    <string name="edit_note">Редактировать заметку</string>
+    <string name="remove_note">Удалить заметку</string>
 </resources>
