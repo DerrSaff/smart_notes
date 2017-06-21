@@ -59,7 +59,8 @@ public class ListNotesActivity extends AppCompatActivity {
         };
 
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setMessage(R.string.are_you_sure).setPositiveButton(R.string.option_yes, dialogClickListener)
+        builder.setMessage(R.string.are_you_sure)
+                .setPositiveButton(R.string.option_yes, dialogClickListener)
                 .setNegativeButton(R.string.option_no, dialogClickListener).show();
     }
 
