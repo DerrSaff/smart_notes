@@ -10,6 +10,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ImageButton;
 import android.widget.ListView;
 
@@ -38,6 +39,17 @@ public class ListNotesActivity extends AppCompatActivity {
         ListView listView = (ListView)findViewById(R.id.notes_listView);
         ListNotesAdapter listNotesAdapter = new ListNotesAdapter(this, DBAdapter.getAllNoteData());
         listView.setAdapter(listNotesAdapter);
+
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            public void onItemClick(AdapterView<?> parent, View view,
+                                    int position, long id) {
+            Log.d("Clicked item id", "itemClick: position = " + position + ", id = " + id);
+            Intent intent = new Intent(ListNotesActivity.this, ViewNoteActivity.class);
+            intent.putExtra("id", (int) id);
+            startActivity(intent);
+            }
+        });
+
     }
 
     public void onRemoveClick (final View view) {
