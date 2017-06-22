@@ -26,4 +26,7 @@
     <string name="are_you_sure">Вы уверены?</string>
     <string name="option_no">Нет</string>
     <string name="option_yes">Да</string>
+    <string name="export_to_text">Экспортировать заметку в текст</string>
+    <string name="share_note">Поделиться заметкой</string>
+    <string name="show_on_map">Показать на карте</string>
 </resources>

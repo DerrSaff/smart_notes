@@ -25,4 +25,7 @@
     <string name="are_you_sure">Are you sure?</string>
     <string name="option_yes">Yes</string>
     <string name="option_no">No</string>
+    <string name="export_to_text">Export the Note to a Text File</string>
+    <string name="share_note">Share the Note</string>
+    <string name="show_on_map">Show on the Map</string>
 </resources>
