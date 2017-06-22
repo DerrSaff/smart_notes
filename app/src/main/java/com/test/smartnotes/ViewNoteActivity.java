@@ -5,6 +5,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
+import android.view.Menu;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -21,7 +22,6 @@ public class ViewNoteActivity extends AppCompatActivity {
         setContentView(R.layout.activity_view_note);
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.view_note_toolbar);
-        toolbar.inflateMenu(R.menu.view_note_menu);
         setSupportActionBar(toolbar);
 
         Intent intent = getIntent();
@@ -64,5 +64,11 @@ public class ViewNoteActivity extends AppCompatActivity {
         if (imagePath.equals("no_image")) {
             noteImage.setVisibility(View.GONE);
         }
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.view_note_menu, menu);
+        return super.onCreateOptionsMenu(menu);
     }
 }
