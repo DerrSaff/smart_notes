@@ -29,9 +29,9 @@ public class CreateNoteActivity extends AppCompatActivity {
         String noteTitle;
         String noteText;
         int importance;
-        String imagePath = "test"; // a stub for future development
-        double longitude = 0.0; // a stub for future development
-        double latitude = 0.0; // a stub for future development
+        String imagePath = "no_image"; // a stub for future development
+        double longitude = -200.0; // a stub for future development
+        double latitude = -200.0; // a stub for future development
 
         EditText noteTitleView = (EditText) findViewById(R.id.noteTitle);
         if ( String.valueOf(noteTitleView.getText()).equals("") ) {
