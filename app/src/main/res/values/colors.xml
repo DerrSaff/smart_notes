@@ -6,4 +6,5 @@
     <color name="importanceHigh">#c8f44336</color>
     <color name="importanceAverage">#c8eeff41</color>
     <color name="importanceLow">#c864dd17</color>
+    <color name="importanceUndefined">#c8bdbdbd</color>
 </resources>

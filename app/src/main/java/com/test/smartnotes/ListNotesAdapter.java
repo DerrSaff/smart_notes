@@ -46,6 +46,9 @@ public class ListNotesAdapter extends CursorAdapter {
         else if (importance == 3) {
             noteItem.setBackgroundColor(context.getResources().getColor(R.color.importanceLow));
         }
+        else {
+            noteItem.setBackgroundColor(context.getResources().getColor(R.color.importanceUndefined));
+        }
 
         noteTitle.setText(note_title);
         noteTitle.setTag(id);
