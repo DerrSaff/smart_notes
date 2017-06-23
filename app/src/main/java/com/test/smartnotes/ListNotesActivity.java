@@ -10,6 +10,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.ContextMenu;
+import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.View;
 import android.widget.AdapterView;
@@ -25,7 +26,7 @@ public class ListNotesActivity extends AppCompatActivity {
         DBAdapter.init(this);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_list_notes);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        Toolbar toolbar = (Toolbar) findViewById(R.id.list_notes_toolbar);
         setSupportActionBar(toolbar);
 
 //        FloatingActionButton createNoteButton = (FloatingActionButton) findViewById(R.id.create_note_button);
@@ -92,6 +93,12 @@ public class ListNotesActivity extends AppCompatActivity {
         ListView listView = (ListView)findViewById(R.id.notes_listView);
         ListNotesAdapter listNotesAdapter = new ListNotesAdapter(this, DBAdapter.getAllNoteData());
         listView.setAdapter(listNotesAdapter);
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.list_notes_menu, menu);
+        return super.onCreateOptionsMenu(menu);
     }
 
 }
