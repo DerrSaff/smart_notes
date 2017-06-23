@@ -13,6 +13,9 @@
         android:layout_height="wrap_content"
         android:layout_weight="1"
         android:textSize="@dimen/standard_text_font_size"
+        android:textAlignment="center"
+        android:paddingTop="@dimen/standard_margin"
+        android:paddingBottom="@dimen/standard_margin"
         android:text="" />
 
 </LinearLayout>

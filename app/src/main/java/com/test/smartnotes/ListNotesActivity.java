@@ -28,15 +28,15 @@ public class ListNotesActivity extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        FloatingActionButton createNoteButton = (FloatingActionButton) findViewById(R.id.create_note_button);
-        createNoteButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-//                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-//                        .setAction("Action", null).show();
-                startActivity(new Intent(ListNotesActivity.this, CreateNoteActivity.class));
-            }
-        });
+//        FloatingActionButton createNoteButton = (FloatingActionButton) findViewById(R.id.create_note_button);
+//        createNoteButton.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+////                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
+////                        .setAction("Action", null).show();
+//                startActivity(new Intent(ListNotesActivity.this, CreateNoteActivity.class));
+//            }
+//        });
 
         ListView listView = (ListView)findViewById(R.id.notes_listView);
         ListNotesAdapter listNotesAdapter = new ListNotesAdapter(this, DBAdapter.getAllNoteData());
