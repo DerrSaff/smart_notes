@@ -30,28 +30,24 @@ public class ListNotesAdapter extends CursorAdapter {
     @Override
     public void bindView(View view, Context context, Cursor cursor) {
 
-        ImageView noteImage = (ImageView) view.findViewById(R.id.noteImage);
+        LinearLayout noteItem = (LinearLayout) view.findViewById(R.id.noteBackground);
+        TextView noteTitle = (TextView) view.findViewById(R.id.noteTitle);
 
-        int id = cursor.getInt(cursor.getColumnIndexOrThrow("_id"));
-        ImageButton editNoteButton = (ImageButton) view.findViewById(R.id.editNote);
-        editNoteButton.setTag(id);
-        ImageButton removeNoteButton = (ImageButton) view.findViewById(R.id.removeNote);
-        removeNoteButton.setTag(id);
-
-        LinearLayout noteBackground = (LinearLayout) view.findViewById(R.id.noteBackground);
         int importance = cursor.getInt(cursor.getColumnIndexOrThrow("importance"));
+        int id = cursor.getInt(cursor.getColumnIndexOrThrow("_id"));
+        String note_title = cursor.getString(cursor.getColumnIndexOrThrow("note_title"));
+
         if (importance == 1) {
-            noteBackground.setBackgroundColor(context.getResources().getColor(R.color.importanceHigh));
+            noteItem.setBackgroundColor(context.getResources().getColor(R.color.importanceHigh));
         }
         else if (importance == 2) {
-            noteBackground.setBackgroundColor(context.getResources().getColor(R.color.importanceAverage));
+            noteItem.setBackgroundColor(context.getResources().getColor(R.color.importanceAverage));
         }
         else if (importance == 3) {
-            noteBackground.setBackgroundColor(context.getResources().getColor(R.color.importanceLow));
+            noteItem.setBackgroundColor(context.getResources().getColor(R.color.importanceLow));
         }
 
-        TextView noteTitle = (TextView) view.findViewById(R.id.noteTitle);
-        String note_title = cursor.getString(cursor.getColumnIndexOrThrow("note_title"));
         noteTitle.setText(note_title);
+        noteTitle.setTag(id);
     }
 }

@@ -7,35 +7,12 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <ImageView
-        android:id="@+id/noteImage"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_weight="1"
-        android:contentDescription="@string/image_preview"
-        app:srcCompat="@mipmap/ic_launcher" />
-
     <TextView
         android:id="@+id/noteTitle"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_weight="1"
+        android:textSize="@dimen/standard_text_font_size"
         android:text="" />
 
-    <ImageButton
-        android:id="@+id/editNote"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_weight="1"
-        android:contentDescription="@string/edit_note"
-        app:srcCompat="@android:drawable/ic_menu_edit" />
-
-    <ImageButton
-        android:id="@+id/removeNote"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:onClick="onRemoveClick"
-        android:layout_weight="1"
-        android:contentDescription="@string/remove_note"
-        app:srcCompat="@android:drawable/ic_menu_delete" />
 </LinearLayout>
