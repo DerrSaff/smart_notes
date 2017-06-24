@@ -90,6 +90,20 @@ public class ListNotesActivity extends AppCompatActivity {
     }
 
     @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.action_create_note:
+                startActivity(new Intent(ListNotesActivity.this, CreateNoteActivity.class));
+                return true;
+            case R.id.action_show_map:
+                // place for map displaying
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
+    }
+
+    @Override
     public boolean onContextItemSelected(MenuItem item) {
         AdapterView.AdapterContextMenuInfo info = (AdapterView.AdapterContextMenuInfo) item.getMenuInfo();
         switch (item.getItemId()) {
