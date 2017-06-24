@@ -3,8 +3,6 @@ package com.test.smartnotes;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -12,9 +10,9 @@ import android.util.Log;
 import android.view.ContextMenu;
 import android.view.Menu;
 import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.ImageButton;
 import android.widget.ListView;
 
 import com.test.smartnotes.database.DBAdapter;
@@ -28,16 +26,6 @@ public class ListNotesActivity extends AppCompatActivity {
         setContentView(R.layout.activity_list_notes);
         Toolbar toolbar = (Toolbar) findViewById(R.id.list_notes_toolbar);
         setSupportActionBar(toolbar);
-
-//        FloatingActionButton createNoteButton = (FloatingActionButton) findViewById(R.id.create_note_button);
-//        createNoteButton.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-////                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-////                        .setAction("Action", null).show();
-//                startActivity(new Intent(ListNotesActivity.this, CreateNoteActivity.class));
-//            }
-//        });
 
         ListView listView = (ListView)findViewById(R.id.notes_listView);
         ListNotesAdapter listNotesAdapter = new ListNotesAdapter(this, DBAdapter.getAllNoteData());
@@ -64,13 +52,13 @@ public class ListNotesActivity extends AppCompatActivity {
         inflater.inflate(R.menu.view_note_menu, menu);
     }
 
-    public void onRemoveClick (final View view) {
+    public void RemoveNoteDialog (final String id) {
         DialogInterface.OnClickListener dialogClickListener = new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 switch (which){
                     case DialogInterface.BUTTON_POSITIVE:
-                        DBAdapter.deleteNoteData(String.valueOf(view.getTag()));
+                        DBAdapter.deleteNoteData(id);
                         dialog.dismiss();
                         refreshListView();
                         break;
@@ -99,6 +87,23 @@ public class ListNotesActivity extends AppCompatActivity {
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.list_notes_menu, menu);
         return super.onCreateOptionsMenu(menu);
+    }
+
+    @Override
+    public boolean onContextItemSelected(MenuItem item) {
+        AdapterView.AdapterContextMenuInfo info = (AdapterView.AdapterContextMenuInfo) item.getMenuInfo();
+        switch (item.getItemId()) {
+            case R.id.action_edit_note:
+//                Intent intent = new Intent(ListNotesActivity.this, EditNoteActivity.class);
+//                intent.putExtra("id", info.id);
+//                startActivity(intent);
+                return true;
+            case R.id.action_remove_note:
+                RemoveNoteDialog(String.valueOf(info.id));
+                return true;
+            default:
+                return super.onContextItemSelected(item);
+        }
     }
 
 }
