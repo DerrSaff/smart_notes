@@ -5,7 +5,7 @@ package com.test.smartnotes.database;
  */
 public class NoteData {
 
-    private int id;
+    private long id;
     private String noteTitle;
     private String noteText;
     private int importance;
@@ -32,7 +32,7 @@ public class NoteData {
      * @param latitude   the latitude
      * @param longitude  the longitude
      */
-    public NoteData(int id, String noteTitle, String noteText, int importance, String imagePath,
+    public NoteData(long id, String noteTitle, String noteText, int importance, String imagePath,
                     double latitude, double longitude) {
         this.id = id;
         this.noteTitle = noteTitle;
@@ -68,7 +68,7 @@ public class NoteData {
      *
      * @return the int
      */
-    public int getID(){
+    public long getID(){
         return this.id;
     }
 
@@ -77,7 +77,7 @@ public class NoteData {
      *
      * @param id the id
      */
-    public void setID(int id){
+    public void setID(long id){
         this.id = id;
     }
 

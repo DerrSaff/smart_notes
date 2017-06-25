@@ -25,7 +25,7 @@ public class ViewNoteActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
 
         Intent intent = getIntent();
-        int id = intent.getIntExtra("id", 1);
+        long id = intent.getLongExtra("id", 1);
 
         NoteData note = DBAdapter.getNoteData(id);
 

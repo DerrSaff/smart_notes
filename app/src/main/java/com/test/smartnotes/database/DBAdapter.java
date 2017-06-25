@@ -136,7 +136,7 @@ public class DBAdapter {
     }
 
     /** Get a Note **/
-    public static NoteData getNoteData(int id) {
+    public static NoteData getNoteData(long id) {
         final SQLiteDatabase db = open();
 
         Cursor cursor =
@@ -154,7 +154,7 @@ public class DBAdapter {
         }
 
         return new NoteData(
-                Integer.parseInt(cursor.getString(0)),
+                Long.parseLong(cursor.getString(0)),
                 cursor.getString(1),
                 cursor.getString(2),
                 Integer.parseInt(cursor.getString(3)),
@@ -177,7 +177,7 @@ public class DBAdapter {
 //        if (cursor.moveToFirst()) {
 //            do {
 //                NoteData data = new NoteData();
-//                data.setID(Integer.parseInt(cursor.getString(0)));
+//                data.setID(Long.parseLong(cursor.getString(0)));
 //                data.setNoteTitle(cursor.getString(1));
 //                data.setNoteText(cursor.getString(2));
 //                data.setImportance(Integer.parseInt(cursor.getString(3)));

@@ -37,7 +37,7 @@ public class ListNotesActivity extends AppCompatActivity {
                                     int position, long id) {
             Log.d("Clicked item id", "itemClick: position = " + position + ", id = " + id);
             Intent intent = new Intent(ListNotesActivity.this, ViewNoteActivity.class);
-            intent.putExtra("id", (int) id);
+            intent.putExtra("id", id);
             startActivity(intent);
             }
         });
@@ -108,9 +108,9 @@ public class ListNotesActivity extends AppCompatActivity {
         AdapterView.AdapterContextMenuInfo info = (AdapterView.AdapterContextMenuInfo) item.getMenuInfo();
         switch (item.getItemId()) {
             case R.id.action_edit_note:
-//                Intent intent = new Intent(ListNotesActivity.this, EditNoteActivity.class);
-//                intent.putExtra("id", info.id);
-//                startActivity(intent);
+                Intent intent = new Intent(ListNotesActivity.this, EditNoteActivity.class);
+                intent.putExtra("id", info.id);
+                startActivity(intent);
                 return true;
             case R.id.action_remove_note:
                 RemoveNoteDialog(String.valueOf(info.id));
