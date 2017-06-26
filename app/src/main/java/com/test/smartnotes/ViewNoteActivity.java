@@ -1,6 +1,7 @@
 package com.test.smartnotes;
 
 import android.content.Intent;
+import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
@@ -64,11 +65,23 @@ public class ViewNoteActivity extends AppCompatActivity {
         if (imagePath.equals("no_image")) {
             noteImage.setVisibility(View.GONE);
         }
+
+        Log.d("received boolean", String.valueOf(getIntent().getBooleanExtra("updated", false)));
+
+        if (getIntent().getBooleanExtra("updated", false)) {
+            Snackbar.make(findViewById(android.R.id.content), R.string.note_updated, Snackbar.LENGTH_LONG)
+                    .setAction("Action", null).show();
+        }
     }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.view_note_menu, menu);
         return super.onCreateOptionsMenu(menu);
+    }
+
+    @Override
+    public void onBackPressed() {
+        startActivity(new Intent(ViewNoteActivity.this, ListNotesActivity.class));
     }
 }
