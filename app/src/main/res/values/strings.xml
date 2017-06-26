@@ -31,4 +31,6 @@
     <string name="action_remove_note">Remove the Note</string>
     <string name="action_share_note">Share the Note</string>
     <string name="action_create_note">Create a Note</string>
+    <string name="no_changes">No changes commited</string>
+    <string name="note_updated">Note\'s been updated</string>
 </resources>

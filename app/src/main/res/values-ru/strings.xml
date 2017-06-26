@@ -32,4 +32,6 @@
     <string name="action_remove_note">Удалить заметку</string>
     <string name="action_share_note">Поделиться заметкой</string>
     <string name="action_create_note">Создать заметку</string>
+    <string name="no_changes">Изменения не найдены</string>
+    <string name="note_updated">Заметка обновлена</string>
 </resources>
