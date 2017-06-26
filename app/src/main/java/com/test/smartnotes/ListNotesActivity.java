@@ -102,7 +102,8 @@ public class ListNotesActivity extends AppCompatActivity {
                 startActivity(new Intent(ListNotesActivity.this, CreateNoteActivity.class));
                 return true;
             case R.id.action_show_map:
-                // place for map displaying
+                Log.d("it works", "yes");
+                startActivity(new Intent(ListNotesActivity.this, MapsActivity.class));
                 return true;
             default:
                 return super.onOptionsItemSelected(item);
