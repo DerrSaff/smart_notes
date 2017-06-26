@@ -1,12 +1,15 @@
 package com.test.smartnotes;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.support.design.widget.Snackbar;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -82,6 +85,51 @@ public class ViewNoteActivity extends AppCompatActivity {
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.view_note_menu, menu);
         return super.onCreateOptionsMenu(menu);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        long id = getIntent().getLongExtra("id", 1);
+        Intent intent;
+
+        switch (item.getItemId()) {
+            case R.id.action_edit_note:
+                intent = new Intent(ViewNoteActivity.this, EditNoteActivity.class);
+                intent.putExtra("id", id);
+                startActivity(intent);
+                return true;
+            case R.id.action_remove_note:
+                RemoveNoteDialog(String.valueOf(id));
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
+    }
+
+    public void RemoveNoteDialog (final String id) {
+        DialogInterface.OnClickListener dialogClickListener = new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                switch (which){
+                    case DialogInterface.BUTTON_POSITIVE:
+                        DBAdapter.deleteNoteData(id);
+                        dialog.dismiss();
+                        Intent intent = new Intent(ViewNoteActivity.this, ListNotesActivity.class);
+                        intent.putExtra("removed", true);
+                        startActivity(intent);
+                        break;
+
+                    case DialogInterface.BUTTON_NEGATIVE:
+                        dialog.dismiss();
+                        break;
+                }
+            }
+        };
+
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setMessage(R.string.are_you_sure)
+                .setPositiveButton(R.string.option_yes, dialogClickListener)
+                .setNegativeButton(R.string.option_no, dialogClickListener).show();
     }
 
     @Override
