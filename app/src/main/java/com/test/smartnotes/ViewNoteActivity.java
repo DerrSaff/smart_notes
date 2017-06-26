@@ -41,15 +41,19 @@ public class ViewNoteActivity extends AppCompatActivity {
 
         if (importance == 1) {
             noteImportance.setText(R.string.importance_high);
+            noteImportance.setBackgroundColor(this.getResources().getColor(R.color.importanceHigh));
         }
         else if (importance == 2) {
             noteImportance.setText(R.string.importance_average);
+            noteImportance.setBackgroundColor(this.getResources().getColor(R.color.importanceAverage));
         }
         else if (importance == 3) {
             noteImportance.setText(R.string.importance_low);
+            noteImportance.setBackgroundColor(this.getResources().getColor(R.color.importanceLow));
         }
         else {
             noteImportance.setText(R.string.importance_undefined);
+            noteImportance.setBackgroundColor(this.getResources().getColor(R.color.importanceUndefined));
         }
 
         double longitude = note.getLongitude();

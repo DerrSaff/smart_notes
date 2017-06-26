@@ -25,6 +25,15 @@
         app:srcCompat="@mipmap/ic_launcher" />
 
     <TextView
+        android:id="@+id/view_note_importance"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:layout_margin="@dimen/standard_margin"
+        android:textSize="@dimen/standard_text_font_size"
+        android:text="" />
+
+    <TextView
         android:id="@+id/view_note_noteTitle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -36,15 +45,6 @@
         android:id="@+id/view_note_noteText"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="@dimen/standard_margin"
-        android:textSize="@dimen/standard_text_font_size"
-        android:text="" />
-
-    <TextView
-        android:id="@+id/view_note_importance"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center"
         android:layout_margin="@dimen/standard_margin"
         android:textSize="@dimen/standard_text_font_size"
         android:text="" />
