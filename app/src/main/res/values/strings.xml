@@ -33,4 +33,5 @@
     <string name="action_create_note">Create a Note</string>
     <string name="no_changes">No changes commited</string>
     <string name="note_updated">Note\'s been updated</string>
+    <string name="note_removed">Note\'s been removed</string>
 </resources>
