@@ -101,10 +101,9 @@ public class ListNotesActivity extends AppCompatActivity {
             case R.id.action_create_note:
                 startActivity(new Intent(ListNotesActivity.this, CreateNoteActivity.class));
                 return true;
-            case R.id.action_show_map:
-                Log.d("it works", "yes");
-                startActivity(new Intent(ListNotesActivity.this, MapsActivity.class));
-                return true;
+//            case R.id.action_show_map:
+                // stub for future development
+//                return true;
             default:
                 return super.onOptionsItemSelected(item);
         }
