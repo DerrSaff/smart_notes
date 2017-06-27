@@ -35,4 +35,6 @@
     <string name="no_changes">Изменения не найдены</string>
     <string name="note_updated">Заметка обновлена</string>
     <string name="note_removed">Заметка удалена</string>
+    <string name="export_success">Успешно экспортировано</string>
+    <string name="export_fail">Ошибка экспорта</string>
 </resources>
