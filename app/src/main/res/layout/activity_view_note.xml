@@ -1,63 +1,71 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    tools:context="com.test.smartnotes.ViewNoteActivity"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    tools:context="com.test.smartnotes.ViewNoteActivity">
+    tools:layout_editor_absoluteX="8dp"
+    tools:layout_editor_absoluteY="8dp">
 
-    <android.support.v7.widget.Toolbar
-        android:id="@+id/view_note_toolbar"
-        android:layout_width="match_parent"
-        android:layout_height="?attr/actionBarSize"
-        android:background="?attr/colorPrimary"
-        android:elevation="4dp"
-        android:theme="@style/ThemeOverlay.AppCompat.ActionBar"
-        app:popupTheme="@style/ThemeOverlay.AppCompat.Light" />
-
-    <ImageView
-        android:id="@+id/view_note_noteImage"
-        android:contentDescription="@string/image_preview"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="@dimen/standard_margin"
-        app:srcCompat="@mipmap/ic_launcher" />
+        android:orientation="vertical">
 
-    <TextView
-        android:id="@+id/view_note_importance"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center"
-        android:layout_margin="@dimen/standard_margin"
-        android:textSize="@dimen/standard_text_font_size"
-        android:text="" />
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/view_note_toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:background="?attr/colorPrimary"
+            android:elevation="4dp"
+            android:theme="@style/ThemeOverlay.AppCompat.ActionBar"
+            app:popupTheme="@style/ThemeOverlay.AppCompat.Light" />
 
-    <TextView
-        android:id="@+id/view_note_noteTitle"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="@dimen/standard_margin"
-        android:textSize="@dimen/title_text_font_size"
-        android:text="" />
+        <ImageView
+            android:id="@+id/view_note_noteImage"
+            android:contentDescription="@string/image_preview"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/standard_margin"
+            app:srcCompat="@mipmap/ic_launcher" />
 
-    <TextView
-        android:id="@+id/view_note_noteText"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="@dimen/standard_margin"
-        android:textSize="@dimen/standard_text_font_size"
-        android:text="" />
+        <TextView
+            android:id="@+id/view_note_importance"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:layout_margin="@dimen/standard_margin"
+            android:textSize="@dimen/standard_text_font_size"
+            android:text="" />
 
-    <Button
-        android:id="@+id/view_note_map_button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
-        android:drawableLeft="@android:drawable/ic_dialog_map"
-        android:drawableStart="@android:drawable/ic_dialog_map"
-        android:gravity="start|center"
-        android:layout_margin="@dimen/standard_margin"
-        android:text="@string/show_on_map" />
+        <TextView
+            android:id="@+id/view_note_noteTitle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/standard_margin"
+            android:textSize="@dimen/title_text_font_size"
+            android:text="" />
 
-</LinearLayout>
+        <TextView
+            android:id="@+id/view_note_noteText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/standard_margin"
+            android:textSize="@dimen/standard_text_font_size"
+            android:text="" />
+
+        <Button
+            android:id="@+id/view_note_map_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:drawableLeft="@android:drawable/ic_dialog_map"
+            android:drawableStart="@android:drawable/ic_dialog_map"
+            android:gravity="start|center"
+            android:layout_margin="@dimen/standard_margin"
+            android:text="@string/show_on_map" />
+
+    </LinearLayout>
+</ScrollView>
