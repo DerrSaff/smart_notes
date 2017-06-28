@@ -107,13 +107,13 @@ public class CreateNoteActivity extends AppCompatActivity {
 
         if (resultCode == RESULT_OK) {
             loadImage(data.getData());
-            mImagePath = data.getData().toString();
         }
     }
 
     private void loadImage(Uri uri) {
         mNoteImage.setImageURI(uri);
         mNoteImage.setVisibility(View.VISIBLE);
+        mImagePath = uri.toString();
     }
 
     private void addImageButtons() {

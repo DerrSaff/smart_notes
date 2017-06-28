@@ -19,10 +19,11 @@ import com.test.smartnotes.database.NoteData;
 
 public class EditNoteActivity extends AppCompatActivity {
 
-    private Button mbuttonAddImage;
-    private Button mbuttonRemoveImage;
+    private Button mButtonAddImage;
+    private Button mButtonRemoveImage;
     private ImageView mNoteImage;
     private String mImagePath = null;
+    static final String IMAGE_PATH = "imagePath";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,23 +47,35 @@ public class EditNoteActivity extends AppCompatActivity {
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         importanceSpinner.setAdapter(adapter);
 
-        Log.d("note importance", String.valueOf(note.getImportance()));
         importanceSpinner.setSelection(note.getImportance());
 
-        mbuttonAddImage = (Button) findViewById(R.id.addImageButton);
-        mbuttonRemoveImage = (Button) findViewById(R.id.removeImageButton);
+        mButtonAddImage = (Button) findViewById(R.id.addImageButton);
+        mButtonRemoveImage = (Button) findViewById(R.id.removeImageButton);
         mNoteImage = (ImageView) findViewById(R.id.noteImage);
 
-        if (note.getImagePath() == null) {
-            mNoteImage.setVisibility(View.GONE);
-            mbuttonRemoveImage.setVisibility(View.GONE);
+        if (savedInstanceState != null && savedInstanceState.getString(IMAGE_PATH) != null) {
+            loadImage(Uri.parse(savedInstanceState.getString(IMAGE_PATH)));
+            addImageButtons();
         }
         else {
-            mImagePath = note.getImagePath();
-            mNoteImage.setImageURI(Uri.parse(note.getImagePath()));
-            mbuttonAddImage.setText(R.string.change_image);
-            mbuttonRemoveImage.setVisibility(View.VISIBLE);
+            onRemoveImage(mButtonRemoveImage);
         }
+
+        if (note.getImagePath() == null) {
+            onRemoveImage(mButtonRemoveImage);
+        }
+        else {
+            addImageButtons();
+            loadImage(Uri.parse(note.getImagePath()));
+        }
+
+        mNoteImage.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                Intent intent = new Intent();
+                intent.setAction(android.content.Intent.ACTION_VIEW); intent.setDataAndType(Uri.parse(mImagePath),"image/*");
+                startActivity(intent);
+            }
+        });
     }
 
     public void onSaveNote (View view) {
@@ -117,25 +130,35 @@ public class EditNoteActivity extends AppCompatActivity {
     }
 
     public void onRemoveImage (View view) {
-        mbuttonAddImage.setText(R.string.add_image);
-        view.setVisibility(View.GONE);
         mNoteImage.setImageURI(null);
         mNoteImage.setVisibility(View.GONE);
         mImagePath = null;
+        mButtonAddImage.setText(R.string.add_image);
+        mButtonRemoveImage.setVisibility(View.GONE);
     }
 
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
 
         if (resultCode == RESULT_OK) {
-            Uri selectedMediaUri = data.getData();
-            mNoteImage.setImageURI(selectedMediaUri);
-            mNoteImage.setVisibility(View.VISIBLE);
-
-            mbuttonAddImage.setText(R.string.change_image);
-            mbuttonRemoveImage.setVisibility(View.VISIBLE);
-
-            mImagePath = selectedMediaUri.toString();
-            Log.d("image Path", mImagePath);
+            loadImage(data.getData());
+            addImageButtons();
         }
+    }
+
+    private void loadImage(Uri uri) {
+        mNoteImage.setImageURI(uri);
+        mNoteImage.setVisibility(View.VISIBLE);
+        mImagePath = uri.toString();
+    }
+
+    private void addImageButtons() {
+        mButtonAddImage.setText(R.string.change_image);
+        mButtonRemoveImage.setVisibility(View.VISIBLE);
+    }
+
+    @Override
+    public void onSaveInstanceState(Bundle savedInstanceState) {
+        savedInstanceState.putString(IMAGE_PATH, mImagePath);
+        super.onSaveInstanceState(savedInstanceState);
     }
 }
