@@ -37,4 +37,7 @@
     <string name="note_removed">Заметка удалена</string>
     <string name="export_success">Успешно экспортировано</string>
     <string name="export_fail">Ошибка экспорта</string>
+    <string name="note_image_preview">Превью изображения</string>
+    <string name="change_image">Изменить изображение</string>
+    <string name="remove_image">Удалить изображение</string>
 </resources>

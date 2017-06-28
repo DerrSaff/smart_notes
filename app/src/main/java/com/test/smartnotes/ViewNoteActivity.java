@@ -3,6 +3,7 @@ package com.test.smartnotes;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Environment;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AlertDialog;
@@ -24,6 +25,7 @@ import com.test.smartnotes.database.NoteData;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.net.URI;
 
 public class ViewNoteActivity extends AppCompatActivity {
 
@@ -76,8 +78,11 @@ public class ViewNoteActivity extends AppCompatActivity {
 
         String imagePath = note.getImagePath();
         ImageView noteImage = (ImageView) findViewById(R.id.view_note_noteImage);
-        if (imagePath.equals("no_image")) {
+        if (imagePath == null) {
             noteImage.setVisibility(View.GONE);
+        }
+        else {
+            noteImage.setImageURI(Uri.parse(imagePath));
         }
 
         Log.d("received boolean", String.valueOf(getIntent().getBooleanExtra("updated", false)));

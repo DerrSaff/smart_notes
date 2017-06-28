@@ -36,4 +36,7 @@
     <string name="note_removed">Note\'s been removed</string>
     <string name="export_success">Successfully exported</string>
     <string name="export_fail">Failed to export</string>
+    <string name="note_image_preview">Preview of the Note Image</string>
+    <string name="change_image">Change the Image</string>
+    <string name="remove_image">Remove the Image</string>
 </resources>
