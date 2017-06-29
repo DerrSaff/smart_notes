@@ -40,7 +40,7 @@ public class ViewNoteActivity extends AppCompatActivity {
         Intent intent = getIntent();
         long id = intent.getLongExtra("id", 1);
 
-        NoteData note = DBAdapter.getNoteData(id);
+        final NoteData note = DBAdapter.getNoteData(id);
 
         TextView noteTitle = (TextView) findViewById(R.id.view_note_noteTitle);
         noteTitle.setText(note.getNoteTitle());
@@ -85,12 +85,18 @@ public class ViewNoteActivity extends AppCompatActivity {
             noteImage.setImageURI(Uri.parse(imagePath));
         }
 
-        Log.d("received boolean", String.valueOf(getIntent().getBooleanExtra("updated", false)));
-
         if (getIntent().getBooleanExtra("updated", false)) {
             Snackbar.make(findViewById(android.R.id.content), R.string.note_updated, Snackbar.LENGTH_LONG)
                     .setAction("Action", null).show();
         }
+
+        noteImage.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                Intent intent = new Intent();
+                intent.setAction(android.content.Intent.ACTION_VIEW); intent.setDataAndType(Uri.parse(note.getImagePath()),"image/*");
+                startActivity(intent);
+            }
+        });
     }
 
     @Override
