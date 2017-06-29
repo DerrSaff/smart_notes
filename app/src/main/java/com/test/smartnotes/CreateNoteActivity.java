@@ -107,6 +107,7 @@ public class CreateNoteActivity extends AppCompatActivity {
 
         if (resultCode == RESULT_OK) {
             loadImage(data.getData());
+            addImageButtons();
         }
     }
 

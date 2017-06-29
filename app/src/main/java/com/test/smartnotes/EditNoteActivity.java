@@ -53,20 +53,17 @@ public class EditNoteActivity extends AppCompatActivity {
         mButtonRemoveImage = (Button) findViewById(R.id.removeImageButton);
         mNoteImage = (ImageView) findViewById(R.id.noteImage);
 
-        if (savedInstanceState != null && savedInstanceState.getString(IMAGE_PATH) != null) {
-            loadImage(Uri.parse(savedInstanceState.getString(IMAGE_PATH)));
+        if (savedInstanceState != null || note.getImagePath() != null) {
+            if (savedInstanceState != null && savedInstanceState.getString(IMAGE_PATH) != null){
+                loadImage(Uri.parse(savedInstanceState.getString(IMAGE_PATH)));
+            }
+            else {
+                loadImage(Uri.parse(note.getImagePath()));
+            }
             addImageButtons();
         }
         else {
             onRemoveImage(mButtonRemoveImage);
-        }
-
-        if (note.getImagePath() == null) {
-            onRemoveImage(mButtonRemoveImage);
-        }
-        else {
-            addImageButtons();
-            loadImage(Uri.parse(note.getImagePath()));
         }
 
         mNoteImage.setOnClickListener(new View.OnClickListener() {
