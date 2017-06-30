@@ -49,4 +49,9 @@
     <string name="action_share_twitter" translatable="false">Twitter</string>
     <integer name="com_vk_sdk_AppId">6094490</integer>
     <string name="dialog_choose_social_network">Make a choice</string>
+    <string name="sharing_error">An error occured</string>
+    <string name="sharing_cancel">Canceled by the user</string>
+    <string name="sharing_complete">Successfully shared</string>
+    <string name="vk_auth_error">Authorization error</string>
+    <string name="vk_auth_success">Successfully signed in</string>
 </resources>

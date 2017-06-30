@@ -48,4 +48,9 @@
     <string name="action_share_vk">Вконтакте</string>
     <integer name="com_vk_sdk_AppId">6094490</integer>
     <string name="dialog_choose_social_network">Выберите соцсеть</string>
+    <string name="sharing_error">Произошла ошибка</string>
+    <string name="sharing_cancel">Отменено пользователем</string>
+    <string name="sharing_complete">Успешно</string>
+    <string name="vk_auth_error">Ошибка авторизации</string>
+    <string name="vk_auth_success">Успешная авторизация</string>
 </resources>

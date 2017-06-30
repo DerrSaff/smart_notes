@@ -1,14 +1,15 @@
 package com.test.smartnotes;
 
 import android.app.Dialog;
+import android.app.FragmentManager;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Environment;
+import android.provider.MediaStore;
 import android.support.design.widget.Snackbar;
-import android.support.v4.app.FragmentManager;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -150,7 +151,7 @@ public class ViewNoteActivity extends AppCompatActivity {
                             public void onClick(DialogInterface dialog, int which) {
                                 switch (which){
                                     case 0:
-                                        // vk
+                                        shareVK();
                                         break;
                                     case 1:
                                         // fb
@@ -166,6 +167,43 @@ public class ViewNoteActivity extends AppCompatActivity {
             default:
                 return super.onOptionsItemSelected(item);
         }
+    }
+
+    public void shareVK() {
+        NoteData note = DBAdapter.getNoteData(getIntent().getLongExtra("id", 1));
+        FragmentManager fragment_manager = getFragmentManager();
+
+        VKSdk.login(ViewNoteActivity.this, VKScope.WALL, VKScope.PHOTOS);
+        VKShareDialogBuilder builder = new VKShareDialogBuilder();
+        builder.setText(note.getNoteTitle() + "\n" + note.getNoteText());
+        if (note.getImagePath() != null) {
+            try {
+                Uri imagePath = Uri.parse(note.getImagePath());
+                Bitmap noteImage = MediaStore.Images.Media.getBitmap(getContentResolver(), imagePath);
+                builder.setAttachmentImages(new VKUploadImage[]{
+                        new VKUploadImage(noteImage, VKImageParameters.pngImage())
+                });
+            }
+            catch (IOException ioEx) {
+                ioEx.printStackTrace();
+                Log.d("input output", "exception catched");
+            }
+        }
+        builder.setShareDialogListener(new VKShareDialog.VKShareDialogListener() {
+            @Override
+            public void onVkShareComplete(int postId) {
+                Toast.makeText(getApplicationContext(), R.string.sharing_complete, Toast.LENGTH_SHORT).show();
+            }
+            @Override
+            public void onVkShareCancel() {
+                Toast.makeText(getApplicationContext(), R.string.sharing_cancel, Toast.LENGTH_SHORT).show();
+            }
+            @Override
+            public void onVkShareError(VKError error) {
+                Toast.makeText(getApplicationContext(), R.string.sharing_error, Toast.LENGTH_SHORT).show();
+            }
+        });
+        builder.show(fragment_manager, "VK_SHARE_DIALOG");
     }
 
     public void RemoveNoteDialog (final String id) {
@@ -238,11 +276,11 @@ public class ViewNoteActivity extends AppCompatActivity {
         if (!VKSdk.onActivityResult(requestCode, resultCode, data, new VKCallback<VKAccessToken>() {
             @Override
             public void onResult(VKAccessToken res) {
-                Log.d("vk auth", "successful");
+                Toast.makeText(getApplicationContext(), R.string.vk_auth_success, Toast.LENGTH_SHORT).show();
             }
             @Override
             public void onError(VKError error) {
-
+                Toast.makeText(getApplicationContext(), R.string.vk_auth_error, Toast.LENGTH_SHORT).show();
             }
         })) {
             super.onActivityResult(requestCode, resultCode, data);
