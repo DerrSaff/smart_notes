@@ -14,6 +14,11 @@
         <item>Average Importance</item>
         <item>Low Importance</item>
     </string-array>
+    <string-array name="socialNetworksItems">
+        <item>Vkontakte</item>
+        <item>Facebook</item>
+        <item>Twitter</item>
+    </string-array>
     <string name="add_coordinates">Add a Location</string>
     <string name="add_image">Add an Image</string>
     <string name="save">Save</string>
@@ -39,4 +44,9 @@
     <string name="note_image_preview">Preview of the Note Image</string>
     <string name="change_image">Change the Image</string>
     <string name="remove_image">Remove the Image</string>
+    <string name="action_share_vk">Vkontakte</string>
+    <string name="action_share_facebook" translatable="false">Facebook</string>
+    <string name="action_share_twitter" translatable="false">Twitter</string>
+    <integer name="com_vk_sdk_AppId">6094490</integer>
+    <string name="dialog_choose_social_network">Make a choice</string>
 </resources>

@@ -15,6 +15,11 @@
         <item>Средняя важность</item>
         <item>Низкая важность</item>
     </string-array>
+    <string-array name="socialNetworksItems">
+        <item>Вконтакте</item>
+        <item>Facebook</item>
+        <item>Twitter</item>
+    </string-array>
     <string name="add_coordinates">Добавить координаты</string>
     <string name="add_image">Добавить изображение</string>
     <string name="save">Сохранить</string>
@@ -40,4 +45,7 @@
     <string name="note_image_preview">Превью изображения</string>
     <string name="change_image">Изменить изображение</string>
     <string name="remove_image">Удалить изображение</string>
+    <string name="action_share_vk">Вконтакте</string>
+    <integer name="com_vk_sdk_AppId">6094490</integer>
+    <string name="dialog_choose_social_network">Выберите соцсеть</string>
 </resources>

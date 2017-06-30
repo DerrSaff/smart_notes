@@ -1,10 +1,8 @@
 package com.test.smartnotes;
 
-import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.Environment;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
@@ -17,14 +15,9 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
-import android.widget.Toast;
 
 import com.test.smartnotes.database.DBAdapter;
-import com.test.smartnotes.database.NoteData;
-
-import java.io.File;
-import java.io.FileWriter;
-import java.io.IOException;
+import com.vk.sdk.VKSdk;
 
 public class ListNotesActivity extends AppCompatActivity {
 
@@ -55,7 +48,6 @@ public class ListNotesActivity extends AppCompatActivity {
             Snackbar.make(findViewById(android.R.id.content), R.string.note_removed, Snackbar.LENGTH_LONG)
                     .setAction("Action", null).show();
         }
-
     }
 
     @Override
@@ -63,7 +55,7 @@ public class ListNotesActivity extends AppCompatActivity {
                                     ContextMenu.ContextMenuInfo menuInfo) {
         super.onCreateContextMenu(menu, v, menuInfo);
         MenuInflater inflater = getMenuInflater();
-        inflater.inflate(R.menu.view_note_menu, menu);
+        inflater.inflate(R.menu.list_notes_context_menu, menu);
     }
 
     public void RemoveNoteDialog (final String id) {
@@ -129,46 +121,8 @@ public class ListNotesActivity extends AppCompatActivity {
             case R.id.action_remove_note:
                 RemoveNoteDialog(String.valueOf(info.id));
                 return true;
-            case R.id.action_export_to_text:
-                exportNoteToSD(this, info.id);
-                return true;
             default:
                 return super.onContextItemSelected(item);
         }
     }
-
-    public boolean isExternalStorageWritable() {
-        String state = Environment.getExternalStorageState();
-        return Environment.MEDIA_MOUNTED.equals(state);
-    }
-
-    public void exportNoteToSD(Context context, long id) {
-
-        if (isExternalStorageWritable()) {
-            try {
-                File root = new File(Environment.getExternalStorageDirectory(), "smart_notes");
-                if (!root.exists()) {
-                    root.mkdirs();
-                }
-
-                NoteData note = DBAdapter.getNoteData(id);
-                String sFileName = note.getNoteTitle() + ".txt";
-                String sBody = note.getNoteText();
-
-                File gpxfile = new File(root, sFileName);
-                FileWriter writer = new FileWriter(gpxfile);
-                writer.append(sBody);
-                writer.flush();
-                writer.close();
-
-                Toast.makeText(context, R.string.export_success, Toast.LENGTH_SHORT).show();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-        }
-        else {
-            Toast.makeText(context, R.string.export_fail, Toast.LENGTH_SHORT).show();
-        }
-    }
-
 }
