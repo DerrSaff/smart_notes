@@ -16,7 +16,6 @@
     </string-array>
     <string-array name="socialNetworksItems">
         <item>Vkontakte</item>
-        <item>Facebook</item>
         <item>Twitter</item>
     </string-array>
     <string name="add_coordinates">Add a Location</string>
@@ -54,4 +53,6 @@
     <string name="sharing_complete">Successfully shared</string>
     <string name="vk_auth_error">Authorization error</string>
     <string name="vk_auth_success">Successfully signed in</string>
+    <string name="com.twitter.sdk.android.CONSUMER_KEY" translatable="false">k26nLJexsCLLA62mF0mQGP0R0</string>
+    <string name="com.twitter.sdk.android.CONSUMER_SECRET" translatable="false">DNcqgI8ZHePJ2HnXg2wqaIA3CIO8Gv4Fkao7qwOR2l87OHamYq</string>
 </resources>

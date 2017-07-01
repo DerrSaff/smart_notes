@@ -1,6 +1,5 @@
 package com.test.smartnotes;
 
-import android.app.Dialog;
 import android.app.FragmentManager;
 import android.content.Context;
 import android.content.DialogInterface;
@@ -10,14 +9,13 @@ import android.net.Uri;
 import android.os.Environment;
 import android.provider.MediaStore;
 import android.support.design.widget.Snackbar;
+import android.support.v4.content.FileProvider;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
-import android.view.ContextMenu;
 import android.view.Menu;
-import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
@@ -32,20 +30,22 @@ import com.vk.sdk.VKCallback;
 import com.vk.sdk.VKScope;
 import com.vk.sdk.VKSdk;
 import com.vk.sdk.api.VKError;
-import com.vk.sdk.api.model.VKApiPhoto;
-import com.vk.sdk.api.model.VKPhotoArray;
 import com.vk.sdk.api.photo.VKImageParameters;
 import com.vk.sdk.api.photo.VKUploadImage;
 import com.vk.sdk.dialogs.VKShareDialog;
 import com.vk.sdk.dialogs.VKShareDialogBuilder;
-import com.vk.sdk.util.VKUtil;
+import com.twitter.sdk.android.tweetcomposer.TweetComposer;
 
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 
+import static java.security.AccessController.getContext;
+
 
 public class ViewNoteActivity extends AppCompatActivity {
+
+    private static File mFilesDir;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -116,6 +116,7 @@ public class ViewNoteActivity extends AppCompatActivity {
             }
         });
 
+        mFilesDir = this.getFilesDir();
     }
 
     @Override
@@ -154,10 +155,7 @@ public class ViewNoteActivity extends AppCompatActivity {
                                         shareVK();
                                         break;
                                     case 1:
-                                        // fb
-                                        break;
-                                    case 2:
-                                        // tw
+                                        shareTW();
                                         break;
                                 }
                             }
@@ -204,6 +202,17 @@ public class ViewNoteActivity extends AppCompatActivity {
             }
         });
         builder.show(fragment_manager, "VK_SHARE_DIALOG");
+    }
+
+    public void shareTW() {
+        NoteData note = DBAdapter.getNoteData(getIntent().getLongExtra("id", 1));
+
+        TweetComposer.Builder builder = new TweetComposer.Builder(this)
+                .text(note.getNoteTitle() + "\n" + note.getNoteText());
+        if (note.getImagePath() != null) {
+            builder.image(Uri.parse(note.getImagePath()));
+        }
+        builder.show();
     }
 
     public void RemoveNoteDialog (final String id) {
