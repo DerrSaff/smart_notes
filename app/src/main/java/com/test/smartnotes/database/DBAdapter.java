@@ -1,9 +1,5 @@
 package com.test.smartnotes.database;
 
-/**
- * Created by saff on 08.06.17.
- */
-
 import android.content.ContentValues;
 import android.database.DatabaseUtils;
 import android.database.sqlite.SQLiteDatabase;
@@ -12,19 +8,15 @@ import android.database.SQLException;
 import android.content.Context;
 import android.database.Cursor;
 import android.util.Log;
-
 import com.test.smartnotes.database.NotesDbSchema.NotesTable;
-
-import java.util.ArrayList;
-import java.util.List;
 
 public class DBAdapter {
 
     /** if debug is set true then it will show all Logcat message **/
-    public static final boolean DEBUG = true;
+    private static final boolean DEBUG = true;
 
     /** Logcat TAG **/
-    public static final String LOG_TAG = "DBAdapter";
+    private static final String LOG_TAG = "DBAdapter";
 
     /** Database Version **/
     private static final int DATABASE_VERSION = 1;
@@ -55,7 +47,7 @@ public class DBAdapter {
 
     /** Main Database creation INNER class **/
     private static class DataBaseHelper extends SQLiteOpenHelper {
-        public DataBaseHelper(Context context) {
+        private DataBaseHelper(Context context) {
             super(context, DATABASE_NAME, null, DATABASE_VERSION);
         }
 
@@ -65,8 +57,7 @@ public class DBAdapter {
                 Log.i(LOG_TAG, "notes table create");
             try {
                 db.execSQL(NOTES_CREATE);
-
-
+                db.close();
             } catch (Exception exception) {
                 if (DEBUG)
                     Log.i(LOG_TAG, "Exception onCreate() exception");
@@ -151,46 +142,24 @@ public class DBAdapter {
 
         if (cursor != null) {
             cursor.moveToFirst();
+            cursor.close();
+            return new NoteData(
+                    Long.parseLong(cursor.getString(0)),
+                    cursor.getString(1),
+                    cursor.getString(2),
+                    Integer.parseInt(cursor.getString(3)),
+                    cursor.getString(4),
+                    Double.parseDouble(cursor.getString(5)),
+                    Double.parseDouble(cursor.getString(6))
+            );
         }
-
-        return new NoteData(
-                Long.parseLong(cursor.getString(0)),
-                cursor.getString(1),
-                cursor.getString(2),
-                Integer.parseInt(cursor.getString(3)),
-                cursor.getString(4),
-                Double.parseDouble(cursor.getString(5)),
-                Double.parseDouble(cursor.getString(6))
-        );
-
+        return new NoteData();
     }
 
     /** Get All Notes **/
     public static Cursor getAllNoteData() {
         final SQLiteDatabase db = open();
         String selectQuery = "SELECT * FROM " + NotesTable.NAME + ";";
-//        Cursor cursor = ;
-
-//        List<NoteData> notesList = new ArrayList<>();
-//
-//        // looping through all rows and adding to list
-//        if (cursor.moveToFirst()) {
-//            do {
-//                NoteData data = new NoteData();
-//                data.setID(Long.parseLong(cursor.getString(0)));
-//                data.setNoteTitle(cursor.getString(1));
-//                data.setNoteText(cursor.getString(2));
-//                data.setImportance(Integer.parseInt(cursor.getString(3)));
-//                data.setImagePath(cursor.getString(4));
-//                data.setLatitude(Double.parseDouble(cursor.getString(5)));
-//                data.setLongitude(Double.parseDouble(cursor.getString(6)));
-//
-//                notesList.add(data);
-//            } while (cursor.moveToNext());
-//        }
-//
-//        cursor.close();
-
         return db.rawQuery(selectQuery, null);
     }
 
