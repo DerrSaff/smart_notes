@@ -28,7 +28,7 @@ public class EditNoteActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_edit_note);
+        setContentView(R.layout.activity_note_form);
 
         Intent intent = getIntent();
         long id = intent.getLongExtra("id", 1);
@@ -98,24 +98,7 @@ public class EditNoteActivity extends AppCompatActivity {
         Spinner spinnerView = (Spinner) findViewById(R.id.importanceSpinner);
         importance = spinnerView.getSelectedItemPosition();
 
-        Log.d("noteTitle", noteTitle);
-        Log.d("noteText", noteText);
-        Log.d("Importance position", String.valueOf(importance));
-        Log.d("imagePath", String.valueOf(mImagePath));
-        Log.d("longitude", String.valueOf(longitude));
-        Log.d("latitude", String.valueOf(latitude));
 
-        int result = DBAdapter.updateNoteData( new NoteData(id, noteTitle, noteText, importance, mImagePath, longitude, latitude));
-        if (result == 0) {
-            Snackbar.make(view, R.string.no_changes, Snackbar.LENGTH_LONG)
-                    .setAction("Action", null).show();
-        }
-        else if (result == 1) {
-            Intent intent = new Intent(EditNoteActivity.this, ViewNoteActivity.class);
-            intent.putExtra("id", id);
-            intent.putExtra("updated", true);
-            startActivity(intent);
-        }
 
     }
 

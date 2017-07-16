@@ -2,20 +2,21 @@ package com.test.smartnotes;
 
 import android.content.Intent;
 import android.net.Uri;
+import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Spinner;
+import android.widget.TextView;
 
 import com.test.smartnotes.database.DBAdapter;
 import com.test.smartnotes.database.NoteData;
 
-public class CreateNoteActivity extends AppCompatActivity {
+public class NoteFormActivity extends AppCompatActivity {
 
     private Button mButtonAddImage;
     private Button mButtonRemoveImage;
@@ -26,7 +27,8 @@ public class CreateNoteActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_create_note);
+        setContentView(R.layout.activity_note_form);
+
         Spinner importanceSpinner = (Spinner) findViewById(R.id.importanceSpinner);
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,
                 R.array.importanceItems, android.R.layout.simple_spinner_item);
@@ -37,13 +39,42 @@ public class CreateNoteActivity extends AppCompatActivity {
         mButtonRemoveImage = (Button) findViewById(R.id.removeImageButton);
         mNoteImage = (ImageView) findViewById(R.id.noteImage);
 
-        if (savedInstanceState != null && savedInstanceState.getString(IMAGE_PATH) != null) {
-            mImagePath = savedInstanceState.getString(IMAGE_PATH);
-            loadImage(Uri.parse(mImagePath));
-            addImageButtons();
+        Intent intent = getIntent();
+
+        if (intent.getStringExtra("purpose").equals("create")) {
+            if (savedInstanceState != null && savedInstanceState.getString(IMAGE_PATH) != null) {
+                mImagePath = savedInstanceState.getString(IMAGE_PATH);
+                loadImage(Uri.parse(mImagePath));
+                addImageButtons();
+            }
+            else {
+                onRemoveImage(mButtonRemoveImage);
+            }
         }
-        else {
-            onRemoveImage(mButtonRemoveImage);
+        else if (intent.getStringExtra("purpose").equals("edit")) {
+            long id = intent.getLongExtra("id", 1);
+            NoteData note = DBAdapter.getNoteData(id);
+
+            TextView noteTitle = (TextView) findViewById(R.id.noteTitle);
+            noteTitle.setText(note.getNoteTitle());
+
+            TextView noteText = (TextView) findViewById(R.id.noteText);
+            noteText.setText(note.getNoteText());
+
+            importanceSpinner.setSelection(note.getImportance());
+
+            if (savedInstanceState != null || note.getImagePath() != null) {
+                if (savedInstanceState != null && savedInstanceState.getString(IMAGE_PATH) != null){
+                    loadImage(Uri.parse(savedInstanceState.getString(IMAGE_PATH)));
+                }
+                else {
+                    loadImage(Uri.parse(note.getImagePath()));
+                }
+                addImageButtons();
+            }
+            else {
+                onRemoveImage(mButtonRemoveImage);
+            }
         }
 
         mNoteImage.setOnClickListener(new View.OnClickListener() {
@@ -76,14 +107,25 @@ public class CreateNoteActivity extends AppCompatActivity {
         Spinner spinnerView = (Spinner) findViewById(R.id.importanceSpinner);
         importance = spinnerView.getSelectedItemPosition();
 
-        Log.d("noteTitle", noteTitle);
-        Log.d("noteText", noteText);
-        Log.d("Importance position", String.valueOf(importance));
-        Log.d("imagePath", String.valueOf(mImagePath));
-        Log.d("longitude", String.valueOf(longitude));
-        Log.d("latitude", String.valueOf(latitude));
+        Intent intent = new Intent(NoteFormActivity.this, ViewNoteActivity.class);
 
-        DBAdapter.addNoteData( new NoteData(noteTitle, noteText, importance, mImagePath, longitude, latitude));
+        if (getIntent().getStringExtra("purpose").equals("create")) {
+            DBAdapter.addNoteData( new NoteData(noteTitle, noteText, importance, mImagePath, longitude, latitude));
+        }
+        else if (getIntent().getStringExtra("purpose").equals("edit")) {
+            long id = getIntent().getLongExtra("id", 1);
+            int result = DBAdapter.updateNoteData( new NoteData(id, noteTitle, noteText, importance, mImagePath, longitude, latitude));
+
+            if (result == 0) {
+                Snackbar.make(view, R.string.no_changes, Snackbar.LENGTH_LONG)
+                        .setAction("Action", null).show();
+            }
+            else if (result == 1) {
+                intent.putExtra("id", id);
+                intent.putExtra("updated", true);
+                startActivity(intent);
+            }
+        }
 
         startActivity(new Intent(this, ListNotesActivity.class));
     }

@@ -17,7 +17,6 @@ import android.widget.AdapterView;
 import android.widget.ListView;
 
 import com.test.smartnotes.database.DBAdapter;
-import com.vk.sdk.VKSdk;
 
 public class ListNotesActivity extends AppCompatActivity {
 
@@ -99,7 +98,9 @@ public class ListNotesActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.action_create_note:
-                startActivity(new Intent(ListNotesActivity.this, CreateNoteActivity.class));
+                Intent intent = new Intent(ListNotesActivity.this, NoteFormActivity.class);
+                intent.putExtra("purpose", "create");
+                startActivity(intent);
                 return true;
 //            case R.id.action_show_map:
                 // stub for future development
@@ -114,7 +115,8 @@ public class ListNotesActivity extends AppCompatActivity {
         AdapterView.AdapterContextMenuInfo info = (AdapterView.AdapterContextMenuInfo) item.getMenuInfo();
         switch (item.getItemId()) {
             case R.id.action_edit_note:
-                Intent intent = new Intent(ListNotesActivity.this, EditNoteActivity.class);
+                Intent intent = new Intent(ListNotesActivity.this, NoteFormActivity.class);
+                intent.putExtra("purpose", "edit");
                 intent.putExtra("id", info.id);
                 startActivity(intent);
                 return true;

@@ -9,7 +9,6 @@ import android.net.Uri;
 import android.os.Environment;
 import android.provider.MediaStore;
 import android.support.design.widget.Snackbar;
-import android.support.v4.content.FileProvider;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -39,9 +38,6 @@ import com.twitter.sdk.android.tweetcomposer.TweetComposer;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
-
-import static java.security.AccessController.getContext;
-
 
 public class ViewNoteActivity extends AppCompatActivity {
 

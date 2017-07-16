@@ -14,7 +14,7 @@
         android:theme="@style/Theme.AppCompat.Light.NoActionBar"
         android:name=".SmartNotesApplication">
         <activity
-            android:name=".CreateNoteActivity"
+            android:name=".NoteFormActivity"
             android:parentActivityName=".ListNotesActivity" />
         <activity
             android:name=".ListNotesActivity"

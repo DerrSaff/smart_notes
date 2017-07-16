@@ -57,7 +57,6 @@ public class DBAdapter {
                 Log.i(LOG_TAG, "notes table create");
             try {
                 db.execSQL(NOTES_CREATE);
-                db.close();
             } catch (Exception exception) {
                 if (DEBUG)
                     Log.i(LOG_TAG, "Exception onCreate() exception");
@@ -142,7 +141,6 @@ public class DBAdapter {
 
         if (cursor != null) {
             cursor.moveToFirst();
-            cursor.close();
             return new NoteData(
                     Long.parseLong(cursor.getString(0)),
                     cursor.getString(1),
