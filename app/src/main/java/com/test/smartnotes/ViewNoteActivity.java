@@ -130,8 +130,9 @@ public class ViewNoteActivity extends AppCompatActivity {
 
         switch (item.getItemId()) {
             case R.id.action_edit_note:
-                intent = new Intent(ViewNoteActivity.this, EditNoteActivity.class);
+                intent = new Intent(ViewNoteActivity.this, NoteFormActivity.class);
                 intent.putExtra("id", id);
+                intent.putExtra("purpose", "edit");
                 startActivity(intent);
                 return true;
             case R.id.action_remove_note:

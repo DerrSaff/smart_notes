@@ -29,9 +29,6 @@
         <activity
             android:name=".ViewNoteActivity"
             android:parentActivityName=".ListNotesActivity" />
-        <activity
-            android:name=".EditNoteActivity"
-            android:parentActivityName=".ListNotesActivity" />
         <activity android:name="com.vk.sdk.VKServiceActivity"
             android:label="ServiceActivity"
             android:theme="@style/VK.Transparent" />
