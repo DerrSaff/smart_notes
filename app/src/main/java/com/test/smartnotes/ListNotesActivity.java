@@ -9,12 +9,14 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.ContextMenu;
+import android.view.Gravity;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import com.test.smartnotes.database.DBAdapter;
 
@@ -29,9 +31,20 @@ public class ListNotesActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
 
         ListView listView = (ListView)findViewById(R.id.notes_listView);
-        ListNotesAdapter listNotesAdapter = new ListNotesAdapter(this, DBAdapter.getAllNoteData());
-        listView.setAdapter(listNotesAdapter);
         registerForContextMenu(listView);
+
+        TextView noNotes = (TextView) findViewById(R.id.list_notes_no_notes);
+        if (DBAdapter.getAllNoteData().getCount() > 0) {
+            ListNotesAdapter listNotesAdapter = new ListNotesAdapter(this, DBAdapter.getAllNoteData());
+            listView.setAdapter(listNotesAdapter);
+            noNotes.setVisibility(View.GONE);
+        }
+        else {
+            listView.setVisibility(View.GONE);
+            noNotes.setVisibility(View.VISIBLE);
+            noNotes.setGravity(Gravity.CENTER_VERTICAL | Gravity.CENTER_HORIZONTAL);
+        }
+
 
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             public void onItemClick(AdapterView<?> parent, View view,

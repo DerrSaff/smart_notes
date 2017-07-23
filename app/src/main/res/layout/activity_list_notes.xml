@@ -24,4 +24,11 @@
         android:divider="@null"
         android:dividerHeight="8.0sp"/>
 
+    <TextView
+        android:id="@+id/list_notes_no_notes"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:textSize="@dimen/title_text_font_size"
+        android:text="@string/no_notes" />
+
 </LinearLayout>

@@ -9,12 +9,8 @@ import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-/**
- * Created by saff on 18.06.17.
- */
-
-public class ListNotesAdapter extends CursorAdapter {
-    public ListNotesAdapter(Context context, Cursor cursor) {
+class ListNotesAdapter extends CursorAdapter {
+    ListNotesAdapter(Context context, Cursor cursor) {
         super(context, cursor, 0);
     }
 
