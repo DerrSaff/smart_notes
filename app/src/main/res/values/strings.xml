@@ -56,4 +56,5 @@
     <string name="com.twitter.sdk.android.CONSUMER_KEY" translatable="false">k26nLJexsCLLA62mF0mQGP0R0</string>
     <string name="com.twitter.sdk.android.CONSUMER_SECRET" translatable="false">DNcqgI8ZHePJ2HnXg2wqaIA3CIO8Gv4Fkao7qwOR2l87OHamYq</string>
     <string name="no_notes">No Notes</string>
+    <string name="note_no_text">Add some text to the note!</string>
 </resources>

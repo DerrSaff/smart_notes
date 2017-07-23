@@ -12,6 +12,7 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.test.smartnotes.database.DBAdapter;
 import com.test.smartnotes.database.NoteData;
@@ -103,6 +104,11 @@ public class NoteFormActivity extends AppCompatActivity {
 
         EditText noteTextView = (EditText) findViewById(R.id.noteText);
         noteText = String.valueOf(noteTextView.getText());
+
+        if (String.valueOf(noteTextView.getText()).equals("")) {
+            Toast.makeText(getApplicationContext(), R.string.note_no_text, Toast.LENGTH_SHORT).show();
+            return;
+        }
 
         Spinner spinnerView = (Spinner) findViewById(R.id.importanceSpinner);
         importance = spinnerView.getSelectedItemPosition();
